@@ -1,0 +1,3 @@
+[Hello]
+    One = "Привіт, {{.Name}}!"
+    Other = "Привіт, {{.Name}}s!"

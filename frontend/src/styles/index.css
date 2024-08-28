@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-item {
+    @apply flex mb-3 text-sm font-medium text-blue-100 transition hover:text-white;
+  }
+  
+  .nav-title {
+    @apply mb-3 text-xs font-semibold tracking-wider text-blue-200 uppercase;
+  }
+  
+  .footer-section {
+    @apply col-span-1 md:col-span-1 lg:col-span-2;
+  }
