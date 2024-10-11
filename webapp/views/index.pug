@@ -2,10 +2,6 @@ extends layouts/main
 
 block content
   div
-    button(@click="darkMode = !darkMode; localStorage.setItem('dark-mode', darkMode);" :class="{ 'dark': darkMode }")
-      | Toggle Dark Mode
-    .bg-white.text-black(:class="{ 'dark': darkMode }" class='dark:bg-gray-900 dark:text-white')
-
 
   .container.px-6.py-32.mx-auto(class='md:text-center md:px-4')
         h1.text-4xl.font-extrabold.leading-none.leading-10.tracking-tight(class='sm:text-5xl md:text-6xl xl:text-7xl')

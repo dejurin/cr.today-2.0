@@ -3,13 +3,26 @@
 @tailwind utilities;
 
 .nav-item {
-    @apply flex mb-3 text-sm font-medium text-blue-100 transition hover:text-white;
+  @apply flex mb-3 text-sm font-medium text-blue-100 transition hover:text-white;
+}
+
+.nav-title {
+  @apply mb-3 text-xs font-semibold tracking-wider text-blue-200 uppercase;
+}
+
+.footer-section {
+  @apply col-span-1 md:col-span-1 lg:col-span-2;
+}
+
+.switch {
+  @apply flex items-center justify-center space-x-2;
+  button {
+    @apply relative inline-flex h-6 ml-4 rounded-full w-10
   }
-  
-  .nav-title {
-    @apply mb-3 text-xs font-semibold tracking-wider text-blue-200 uppercase;
+  span {
+    @apply w-5 h-5 transform duration-200 ease-in-out bg-white rounded-full shadow-md;
   }
-  
-  .footer-section {
-    @apply col-span-1 md:col-span-1 lg:col-span-2;
+  label {
+    @apply text-sm select-none;
   }
+}

@@ -3,12 +3,20 @@ package main
 import (
 	"log"
 
+	"github.com/BurntSushi/toml"
 	"github.com/gofiber/contrib/fiberi18n/v2"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/pug/v2"
-	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
 )
+
+func localizeOrDefault(c *fiber.Ctx, key, defaultValue string) string {
+	localized, err := fiberi18n.Localize(c, key)
+	if err != nil {
+		return defaultValue
+	}
+	return localized
+}
 
 func main() {
 	engine := pug.New("./webapp/views", ".pug")
@@ -17,42 +25,40 @@ func main() {
 		Views: engine,
 	})
 
-	app.Use(
-		fiberi18n.New(&fiberi18n.Config{
-			RootPath:         "./webapp/localize",
-			FormatBundleFile: "toml",
-			AcceptLanguages:  []language.Tag{language.Ukrainian, language.English},
-			DefaultLanguage:  language.English,
-		}),
-	)
+	i18nMiddleware := fiberi18n.New(&fiberi18n.Config{
+		RootPath:         "./webapp/localize",
+		AcceptLanguages:  []language.Tag{language.Ukrainian, language.English},
+		DefaultLanguage:  language.English,
+		FormatBundleFile: "toml",
+		UnmarshalFunc:    toml.Unmarshal,
+	})
 
-	app.Static("/static", "./webapp/static")
+	app.Use(i18nMiddleware)
+	app.Use(func(c *fiber.Ctx) error {
+		t_darkModeSwitch := localizeOrDefault(c, "darkModeSwitch", "Dark Mode")
+		log.Println(t_darkModeSwitch)
+		c.Locals("t_darkMode", t_darkModeSwitch)
+		return c.Next()
+	})
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		lang := c.Query("lang", "en")
 
-		msg, err := fiberi18n.Localize(c, &i18n.LocalizeConfig{
-			DefaultMessage: &i18n.Message{
-				ID:    "Hello",
-				One:   "Hello_, {{.Name}}!",
-				Other: "Hello_, {{.Name}}s!",
-			},
-			TemplateData: map[string]interface{}{
-				"Name": "Test",
-			},
-			PluralCount: 1,
-		})
-
-		if err != nil {
-			return err
-		}
-
 		return c.Render("index", fiber.Map{
 			"Title": "Test",
-			"msg":   msg,
 			"lang":  lang,
 		})
 	})
+
+	app.Get("/test", func(c *fiber.Ctx) error {
+		localize, err := fiberi18n.Localize(c, "hello")
+		if err != nil {
+			return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
+		}
+		return c.SendString(localize)
+	})
+
+	app.Static("/static", "./webapp/static")
 
 	log.Fatal(app.Listen(":3000"))
 }

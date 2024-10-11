@@ -5,24 +5,24 @@ import Alpine from "alpinejs";
 window.Alpine = Alpine;
 
 Alpine.data("darkModeToggle", () => ({
-  darkMode: window.matchMedia("(prefers-color-scheme: dark)").matches,
+  darkModeSwitch: window.matchMedia("(prefers-color-scheme: dark)").matches,
 
-  toggleDarkMode() {
-    this.darkMode = !this.darkMode;
-    localStorage.setItem("dark-mode", this.darkMode ? "true" : "false");
-    document.documentElement.classList.toggle("dark", this.darkMode);
+  darkModeToggle() {
+    this.darkModeSwitch = !this.darkModeSwitch;
+    localStorage.setItem("dark-mode-switch", this.darkModeSwitch ? "true" : "false");
+    document.documentElement.classList.toggle("dark", this.darkModeSwitch);
   },
 
   init() {
-    const storedPreference = localStorage.getItem("dark-mode");
+    const storedPreference = localStorage.getItem("dark-mode-switch");
 
     console.log(storedPreference);
 
     if (storedPreference !== null) {
-      this.darkMode = storedPreference === "true";
+      this.darkModeSwitch = storedPreference === "true";
     }
 
-    document.documentElement.classList.toggle("dark", this.darkMode);
+    document.documentElement.classList.toggle("dark", this.darkModeSwitch);
   },
 }));
 

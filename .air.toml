@@ -3,7 +3,6 @@ tmp_dir = "tmp"
 [build]
   cmd = "go build -o ./tmp/main ./webapp"
   bin = "tmp/main"
-  pre_build = "cd frontend && bun run webpack serve --mode development"
   full_bin = "APP_ENV=dev APP_NAME=myapp APP_PORT=3000 ./tmp/main"
   include_ext = ["go", "tpl", "html", "pug", "css", "js", "ts", "json", "toml", "yaml", "md"]
   exclude_dir = ["static"]

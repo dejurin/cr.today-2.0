@@ -32,13 +32,13 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, '../static'),
+      directory: path.join(__dirname, '../webapp/static'),
     },
-    compress: true,
+    compress: false,
     port: 9000,
     hot: true,
     liveReload: true,
-    open: true,
+    open: false,
     historyApiFallback: true,
   },
   resolve: {

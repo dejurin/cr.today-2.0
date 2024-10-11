@@ -1,3 +1,2 @@
-[Hello]
-    One = "Hello1, {{.Name}}!"
-    Other = "Hello2, {{.Name}}s!"
+hello = "Hello {{.Name}}"
+darkModeSwitch= "Dark Mode"

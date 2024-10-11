@@ -1,3 +1,2 @@
-[Hello]
-    One = "Привіт, {{.Name}}!"
-    Other = "Привіт, {{.Name}}s!"
+hello = "Привит {{.Name}}"
+darkModeSwitch= "Темный режим"
