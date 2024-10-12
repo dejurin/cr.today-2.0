@@ -7,7 +7,7 @@ tmp_dir = "tmp"
   include_ext = ["go", "tpl", "html", "pug", "css", "js", "ts", "json", "toml", "yaml", "md"]
   exclude_dir = ["static"]
   exclude_ext = ["test.go"]
-  delay = 1000
+  delay = 500
   log = "air.log"
   clean_on_exit = true
 

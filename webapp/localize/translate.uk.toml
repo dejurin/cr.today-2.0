@@ -1,1 +1,13 @@
-HelloPerson = "Привіт {{.Name}}"
+["Currency.EUR"]
+few = "{{.count}} Євро"
+hash = "sha1-926fb0c81dd926551dfaeaa278395250b88aede5"
+many = "{{.count}} Євро"
+one = "Євро"
+other = "{{.count}} Євро"
+
+["Currency.USD"]
+few = "{{.count}} Долари США"
+hash = "sha1-63a3c0466ebb6eab5dc73c0d285c4aeb5b363ec6"
+many = "{{.count}} Доларів США"
+one = "Долар США"
+other = "{{.count}} Доларів США"

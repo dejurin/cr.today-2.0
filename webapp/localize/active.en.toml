@@ -1,1 +1,7 @@
-HelloPerson = "Hello {{.Name}}"
+["Currency.EUR"]
+one = "Euro"
+other = "{{.count}} Euros"
+
+["Currency.USD"]
+one = "US Dollar"
+other = "{{.count}} US Dollars"
