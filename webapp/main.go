@@ -12,10 +12,14 @@ import (
 func main() {
 	i18n.InitBundle()
 
-	engine := pug.New("webapp/views", ".pug")
+	engine := pug.New("views", ".pug")
+	engine.Reload(true)
+	// engine.Debug(true)
 
 	app := fiber.New(fiber.Config{
-		Views: engine,
+		Views:             engine,
+		ViewsLayout:       "layouts/main",
+		PassLocalsToViews: true,
 	})
 
 	// Handlers

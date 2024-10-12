@@ -5,6 +5,13 @@ many = "{{.count}} Євро"
 one = "Євро"
 other = "{{.count}} Євро"
 
+["Currency.UAH"]
+few = "{{.count}} гривні"
+hash = "sha1-92864e820bf64d9300551e5d0daaa2d444267877"
+many = "{{.count}} гривень"
+one = "гривня"
+other = "{{.count}} гривні"
+
 ["Currency.USD"]
 few = "{{.count}} Долари США"
 hash = "sha1-63a3c0466ebb6eab5dc73c0d285c4aeb5b363ec6"

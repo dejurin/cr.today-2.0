@@ -12,5 +12,6 @@ var Bundle *i18n.Bundle
 func InitBundle() {
 	Bundle = i18n.NewBundle(language.English)
 	Bundle.RegisterUnmarshalFunc("toml", toml.Unmarshal)
-	Bundle.MustLoadMessageFile("webapp/localize/active.uk.toml")
+	Bundle.MustLoadMessageFile("localize/active.en.toml")
+	Bundle.MustLoadMessageFile("localize/active.uk.toml")
 }

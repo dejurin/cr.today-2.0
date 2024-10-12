@@ -2,6 +2,10 @@
 one = "Euro"
 other = "{{.count}} Euros"
 
+["Currency.UAH"]
+one = "Ukrainian Hryvnia"
+other = "{{.count}} Ukrainian Hryvnias"
+
 ["Currency.USD"]
 one = "US Dollar"
 other = "{{.count}} US Dollars"
