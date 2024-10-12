@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply dark:bg-gray-950 dark:text-white;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
 .nav-item {
   @apply flex mb-3 text-sm font-medium text-blue-100 transition hover:text-white;
 }

@@ -10,7 +10,7 @@ html(x-data="darkModeToggle()" x-init="init" :class="{ 'dark': darkModeSwitch}")
       } else {
         document.documentElement.classList.remove('dark');
       }
-body(class='dark:bg-gray-200')
+body
   include ../partials/nav.pug
   block content
   include ../partials/footer.pug
