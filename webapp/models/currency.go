@@ -4,13 +4,11 @@ import (
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 )
 
-// Модель валюты
 type Currency struct {
 	Code   string
 	Symbol string
 }
 
-// Список валют
 var Currencies = []Currency{
 	{
 		Code:   "USD",
@@ -20,25 +18,31 @@ var Currencies = []Currency{
 		Code:   "EUR",
 		Symbol: "€",
 	},
+	{
+		Code:   "UAH",
+		Symbol: "₴",
+	},
 }
 
-// Статические строки для локализации
 var Messages = []*i18n.Message{
 	{
 		ID:    "Currency.USD",
-		One:   "US Dollar",             // Единственное число
-		Other: "{{.count}} US Dollars", // Множественное число
+		One:   "US Dollar",
+		Other: "{{.count}} US Dollars",
 	},
 	{
 		ID:    "Currency.EUR",
-		One:   "Euro",             // Единственное число
-		Other: "{{.count}} Euros", // Множественное число
+		One:   "Euro",
+		Other: "{{.count}} Euros",
+	},
+	{
+		ID:    "Currency.UAH",
+		One:   "Ukrainian Hryvnia",
+		Other: "{{.count}} Ukrainian Hryvnias",
 	},
 }
 
-// Метод для получения локализованного названия валюты
 func (c *Currency) LocalizeName(localizer *i18n.Localizer, count int) string {
-	// Локализация через go-i18n с заранее определенными строками
 	localizedName := localizer.MustLocalize(&i18n.LocalizeConfig{
 		MessageID:   "Currency." + c.Code,
 		PluralCount: count,
