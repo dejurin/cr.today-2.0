@@ -7,10 +7,6 @@ import (
 func Home(c *fiber.Ctx) error {
 	return c.Render("main/index", fiber.Map{
 		"Title": "Welcome to the Currency App",
-		"Numbers": map[int]string{
-			1: "one",
-			2: "two",
-			3: "three",
-		},
+		"Numbers": []int{1, 2, 3},
 	})
 }
