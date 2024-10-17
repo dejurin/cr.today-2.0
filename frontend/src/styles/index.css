@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 body {
-  @apply dark:bg-gray-950 dark:text-white;
+  @apply dark:bg-gray-950 dark:text-slate-200;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  @apply text-[#262b40] dark:text-white;
 }
 
 [x-cloak] {
@@ -24,13 +28,44 @@ body {
 
 .switch {
   @apply flex items-center justify-center space-x-2;
+
   button {
     @apply relative inline-flex h-6 ml-4 rounded-full w-10
   }
+
   span {
     @apply w-5 h-5 transform duration-200 ease-in-out bg-white rounded-full shadow-md;
   }
+
   label {
     @apply text-sm select-none;
   }
 }
+
+.input-text {
+  @apply flex w-full h-12 px-3 py-2 text-base bg-white dark:bg-slate-900 dark:text-slate-200 border rounded-md border-slate-300 dark:border-slate-700 placeholder:text-slate-500 focus:border-slate-300 dark:focus:border-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400 dark:focus:ring-slate-800 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.dropdown {
+  @apply relative;
+  button {
+    @apply relative w-full inline-flex items-center h-12 px-3 py-2 text-base font-medium transition-colors bg-white dark:bg-slate-900 dark:border-slate-700 border rounded-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 active:bg-white focus:bg-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .list {
+    @apply p-1 mt-1 bg-slate-50 border rounded-md shadow-xl border-slate-200/70 text-slate-700 dark:text-slate-200 dark:bg-slate-800 dark:border-slate-700;
+  }
+  .item {
+    @apply relative flex cursor-default select-none hover:bg-slate-100 dark:hover:bg-slate-900/50 items-center rounded px-2 py-1.5 text-sm outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
+  }
+}
+
+hr {
+  @apply h-px bg-slate-300 border-0 dark:bg-slate-700;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 text-base h-12 font-medium rounded-md  tracking-wide  transition-colors duration-100 bg-transparent border-2;
+}
+.btn-blue {
+    @apply   text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white dark:bg-blue-600/10;
+  }

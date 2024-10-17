@@ -3,6 +3,7 @@ package main
 import (
 	"cr-today-2/webapp/handlers"
 	"log"
+	"strings"
 
 	"github.com/BurntSushi/toml"
 	"github.com/gofiber/contrib/fiberi18n/v2"
@@ -14,12 +15,16 @@ import (
 func main() {
 
 	engine := jet.New("views", ".jet.html")
+	engine.AddFunc("strlower", func(s string) string {
+		return strings.ToLower(s)
+	})
 	engine.Reload(true)
 	engine.Debug(true)
 
 	app := fiber.New(fiber.Config{
 		Views:             engine,
 		PassLocalsToViews: true,
+		ServerHeader:      "CR.Today",
 		ViewsLayout:       "layouts/main",
 	})
 
