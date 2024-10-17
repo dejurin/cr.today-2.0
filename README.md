@@ -20,7 +20,7 @@ Next, you will generate the translation files (translate.*.toml) for all languag
 
 Run the following command:
 
-goi18n merge -outdir localize localize/active.*.toml
+goi18n merge -outdir localize localize/active.en.toml localize/translate.*.toml
 
 This command updates the translation files, such as translate.uk.toml, by adding any new messages that are not yet translated. The new messages will be marked for translation.
 

@@ -2,16 +2,16 @@ package main
 
 import (
 	"cr-today-2/webapp/handlers"
-	"cr-today-2/webapp/i18n"
 	"log"
 
-	"github.com/gofiber/template/jet/v2"
-
+	"github.com/BurntSushi/toml"
+	"github.com/gofiber/contrib/fiberi18n/v2"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/template/jet/v2"
+	"golang.org/x/text/language"
 )
 
 func main() {
-	i18n.InitBundle()
 
 	engine := jet.New("views", ".jet.html")
 	engine.Reload(true)
@@ -22,6 +22,16 @@ func main() {
 		PassLocalsToViews: true,
 		ViewsLayout:       "layouts/main",
 	})
+
+	app.Use(
+		fiberi18n.New(&fiberi18n.Config{
+			RootPath:         "./localize",
+			FormatBundleFile: "toml",
+			UnmarshalFunc:    toml.Unmarshal,
+			AcceptLanguages:  []language.Tag{language.Ukrainian, language.English},
+			DefaultLanguage:  language.English,
+		}),
+	)
 
 	// Handlers
 	app.Get("/", handlers.Home)
