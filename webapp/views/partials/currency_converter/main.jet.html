@@ -1,45 +1,23 @@
-{{ import "../dropdown/main" }}
+{{ import "../dropdown/cc" }}
 {{ import "../blocks/forms/input" }}
 {{ import "../blocks/buttons/outline" }}
+{{ import "../blocks/buttons/circle" }}
 
-
-
-        {{ yield inputField(type="text", id="", placeholder="", value="", class="", required=false, xRef=false) }}
-        {{ yield dropdown(id="base", label="EUR") }}
-        {{ yield dropdown(id="quote", label="USD") }}
+<div class="p-8 grid gap-4 items-center h-auto mx-auto rounded-b-lg bg-white dark:bg-slate-900/80 bg-opacity-90">
+{{ 
+    yield inputField(
+        type="text",
+        id="amount-input",
+        placeholder="1,000.00",
+        class="",
+        required=true,
+        attrs=map(
+            "x-model", "$store.settings.amount",
+            "@input", "$store.settings.setAmount($event.target.value)"
+        )
+    ) 
+}}
+{{ yield dropdownCC(id="base", label="Euro", value="EUR") }}
+{{ yield dropdownCC(id="quote", label="US Dollar", value="USD") }}
 {{ yield buttonOutline(label="Calc") }}
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var currencyList = {{CurrencyListJSON|raw}};
-
-        var base = document.getElementById('base');
-        var quote = document.getElementById('quote');
-
-        function createCurrencyItem(item) {
-            var currencyItem = document.createElement('div');
-            currencyItem.className = 'item';
-            currencyItem.innerHTML =
-                '<img src="/static/flags/' + item.Code.toLowerCase() + '.svg" ' +
-                'width="24" height="24" alt="' + item.Code + '" ' +
-                'class="h-6 w-6 mr-1.5" loading="lazy" />' +
-                '<b>' + item.Code + '</b> - ' + item.Name;
-            return currencyItem;
-        }
-        function renderCurrencyList(container) {
-            var list = container.querySelector('.list');
-            if (list.children.length === 0) {
-                for (var i = 0; i < currencyList.length; i++) {
-                    list.appendChild(createCurrencyItem(currencyList[i]));
-                }
-            }
-        }
-        base.addEventListener('click', function () {
-            renderCurrencyList(base);
-        });
-
-        quote.addEventListener('click', function () {
-            renderCurrencyList(quote);
-        });
-    });
-</script>
+</div>

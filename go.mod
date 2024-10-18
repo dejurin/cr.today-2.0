@@ -13,7 +13,10 @@ require (
 require (
 	github.com/CloudyKit/fastprinter v0.0.0-20200109182630-33d98a066a53 // indirect
 	github.com/CloudyKit/jet/v6 v6.2.0 // indirect
+	github.com/beyer-stefan/gofiber-minifier v0.1.2 // indirect
 	github.com/gofiber/contrib/fiberi18n/v2 v2.0.4 // indirect
+	github.com/tdewolff/minify/v2 v2.20.37 // indirect
+	github.com/tdewolff/parse/v2 v2.7.15 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 

@@ -1,13 +1,11 @@
-{{block inputField(type="text", id="", placeholder="", value="", class="", required=false, xRef=false)}}
-
-    <input
-        id="{{id}}" 
-        type="{{type}}" 
-        value="{{value}}" 
-        placeholder="{{placeholder}}" 
-        class="input-text{{if class}} {{class}}{{end}}"
-        {{if xRef}}x-ref="{{id}}"{{end}}
-        {{if required}}required{{end}}
-    />
-
+{{block inputField(type="text", id="", placeholder="", value="", class="", required=false, attrs=map())}}
+<input 
+    id="{{id}}" 
+    type="{{type}}" 
+    value="{{value}}" 
+    placeholder="{{placeholder}}" 
+    class="input-text{{if class}} {{class}}{{end}}"
+    {{if required}}required{{end}}
+    {{range key, value := attrs}}{{key}}="{{value}}"{{end}}
+/>
 {{end}}

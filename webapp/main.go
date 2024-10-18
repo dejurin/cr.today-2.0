@@ -4,9 +4,11 @@ import (
 	"cr-today-2/webapp/handlers"
 	"cr-today-2/webapp/handlers/api"
 	"log"
-	"strings"
+	"os"
+	"strconv"
 
 	"github.com/BurntSushi/toml"
+	minifier "github.com/beyer-stefan/gofiber-minifier"
 	"github.com/gofiber/contrib/fiberi18n/v2"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/jet/v2"
@@ -15,12 +17,16 @@ import (
 
 func main() {
 
+	env := os.Getenv("APP_ENV")
+	if env == "" {
+		env = "dev"
+	}
+
 	engine := jet.New("views", ".jet.html")
-	engine.AddFunc("strlower", func(s string) string {
-		return strings.ToLower(s)
-	})
-	engine.Reload(true)
-	engine.Debug(true)
+	engine.Reload(getEnvAsBool("TEMPLATE_RELOAD", false))
+	engine.Debug(getEnvAsBool("TEMPLATE_DEBUG", false))
+
+	AddGlobalVariables(engine)
 
 	app := fiber.New(fiber.Config{
 		Views:             engine,
@@ -39,6 +45,10 @@ func main() {
 		}),
 	)
 
+	app.Use(minifier.New(minifier.Config{
+		MinifyHTML: true,
+	}))
+
 	// Handlers
 	app.Get("/", handlers.Home)
 
@@ -48,5 +58,19 @@ func main() {
 	// Static assets
 	app.Static("/static", "./static")
 
+	// Check
+	app.Get("/test", func(c *fiber.Ctx) error {
+		return c.SendString(os.Getenv("APP_ENV"))
+	})
+
+	// Up
 	log.Fatal(app.Listen(":3000"))
+}
+
+func getEnvAsBool(key string, defaultVal bool) bool {
+	valStr := os.Getenv(key)
+	if val, err := strconv.ParseBool(valStr); err == nil {
+		return val
+	}
+	return defaultVal
 }

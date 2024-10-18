@@ -1,6 +1,7 @@
-{{block buttonOutline(label="")}}
-
-<button type="button" class="btn btn-blue">
+{{block buttonOutline(label="", attrs=map())}}
+<button type="button"
+class="btn btn-blue"
+{{range key, value := attrs}}{{key}}="{{value}}"{{end}}>
     {{label}}
 </button>
 {{end}}

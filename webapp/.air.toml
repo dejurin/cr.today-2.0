@@ -1,0 +1,15 @@
+root = "."
+tmp_dir = "tmp"
+[build]
+  cmd = "go build -o ./tmp/main ../webapp"
+  bin = "tmp/main"
+  full_bin = "env $(cat .env.dev | xargs) ./tmp/main"
+  include_ext = ["go", "tpl", "html", "pug", "css", "js", "ts", "json", "toml", "yaml", "md", "jet", "jet.html"]
+  exclude_dir = ["static"]
+  exclude_ext = ["test.go"]
+  delay = 500
+  log = "air.log"
+  clean_on_exit = true
+
+[log]
+  color = true
