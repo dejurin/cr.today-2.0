@@ -89,7 +89,7 @@
                 <div class="px-3 py-1.5">Ничего не найдено</div>
             </template>
             <template x-for="item in filteredItems" :key="item.Code">
-                <div class="item" role="listitem" @click="selectItem(item)">
+                <div class="item" role="listitem" @click="selectItem(item);clearInput()">
                     <img :src="'{{ asset("/flags/' + item.Code.toLowerCase() + '.svg") }}'" 
                          :alt="item.Code" 
                          class="h-6 w-6 mr-1.5" 
