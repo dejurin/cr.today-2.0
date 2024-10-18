@@ -2,22 +2,18 @@
 {{ import "../blocks/forms/input" }}
 {{ import "../blocks/buttons/outline" }}
 {{ import "../blocks/buttons/circle" }}
+{{import "../icons/heroicons/ArrowsRightLeft"}}
 
-<div class="p-8 grid gap-4 items-center h-auto mx-auto rounded-b-lg bg-white dark:bg-slate-900/80 bg-opacity-90">
-{{ 
-    yield inputField(
-        type="text",
-        id="amount-input",
-        placeholder="1,000.00",
-        class="",
-        required=true,
-        attrs=map(
-            "x-model", "$store.settings.amount",
-            "@input", "$store.settings.setAmount($event.target.value)"
-        )
-    ) 
-}}
-{{ yield dropdownCC(id="base", label="Euro", value="EUR") }}
-{{ yield dropdownCC(id="quote", label="US Dollar", value="USD") }}
-{{ yield buttonOutline(label="Calc") }}
+<div class="p-8 flex flex-wrap items-center justify-between w-full h-auto rounded-b-lg bg-white dark:bg-slate-900/80 bg-opacity-90">
+
+{{ yield dropdownCC(id="base", label="Euro", value="EUR", class="w-full sm:w-[45%]") }}
+
+<button class="w-full sm:w-[10%] flex justify-center items-center  py-3">
+    <div class="transform transition-transform duration-500 sm:rotate-0 rotate-90">
+      {{ yield ArrowsRightLeftHeroIcons(class="h-7 w-7") }}
+    </div>
+  </button>
+{{ yield dropdownCC(id="quote", label="US Dollar", value="USD", class="w-full sm:w-[45%]") }}
+
 </div>
+
