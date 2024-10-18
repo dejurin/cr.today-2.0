@@ -1,0 +1,29 @@
+<div class="switch">
+  <input 
+    id="dark-mode-switch" 
+    type="checkbox" 
+    name="dark-mode-switch" 
+    class="hidden" 
+    :checked="darkModeSwitch"
+  />
+  
+  <button 
+    x-ref="switchButton" 
+    type="button" 
+    @click="darkModeToggle()" 
+    :class="darkModeSwitch ? 'bg-blue-600' : 'bg-neutral-200'" 
+    class="py-0.5 focus:outline-none" 
+    x-cloak=""
+  >
+    <span :class="darkModeSwitch ? 'translate-x-[18px]' : 'translate-x-0.5'"></span>
+  </button>
+
+  <label 
+    @click="$refs.switchButton.click(); $refs.switchButton.focus()" 
+    :id="$id('dark-mode-switch')" 
+    :class="{ 'text-blue-600': darkModeSwitch, 'text-gray-400': !darkModeSwitch }" 
+    x-cloak=""
+  >
+  Dark Mode
+  </label>
+</div>

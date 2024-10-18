@@ -130,6 +130,5 @@ dist
 .pnp.*
 .DS_Store
 
-/webapp/views/*.html
-/webapp/views/**/*.html
+
 /tmp/

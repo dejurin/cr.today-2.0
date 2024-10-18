@@ -1,0 +1,45 @@
+{{ import "../dropdown/main" }}
+{{ import "../blocks/forms/input" }}
+{{ import "../blocks/buttons/outline" }}
+
+
+
+        {{ yield inputField(type="text", id="", placeholder="", value="", class="", required=false, xRef=false) }}
+        {{ yield dropdown(id="base", label="EUR") }}
+        {{ yield dropdown(id="quote", label="USD") }}
+{{ yield buttonOutline(label="Calc") }}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var currencyList = {{CurrencyListJSON|raw}};
+
+        var base = document.getElementById('base');
+        var quote = document.getElementById('quote');
+
+        function createCurrencyItem(item) {
+            var currencyItem = document.createElement('div');
+            currencyItem.className = 'item';
+            currencyItem.innerHTML =
+                '<img src="/static/flags/' + item.Code.toLowerCase() + '.svg" ' +
+                'width="24" height="24" alt="' + item.Code + '" ' +
+                'class="h-6 w-6 mr-1.5" loading="lazy" />' +
+                '<b>' + item.Code + '</b> - ' + item.Name;
+            return currencyItem;
+        }
+        function renderCurrencyList(container) {
+            var list = container.querySelector('.list');
+            if (list.children.length === 0) {
+                for (var i = 0; i < currencyList.length; i++) {
+                    list.appendChild(createCurrencyItem(currencyList[i]));
+                }
+            }
+        }
+        base.addEventListener('click', function () {
+            renderCurrencyList(base);
+        });
+
+        quote.addEventListener('click', function () {
+            renderCurrencyList(quote);
+        });
+    });
+</script>

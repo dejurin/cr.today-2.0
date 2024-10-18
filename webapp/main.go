@@ -2,6 +2,7 @@ package main
 
 import (
 	"cr-today-2/webapp/handlers"
+	"cr-today-2/webapp/handlers/api"
 	"log"
 	"strings"
 
@@ -40,6 +41,9 @@ func main() {
 
 	// Handlers
 	app.Get("/", handlers.Home)
+
+	// Api
+	app.Get("/api/currency.json", api.Currency)
 
 	// Static assets
 	app.Static("/static", "./static")
