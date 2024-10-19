@@ -25,6 +25,7 @@ func Currency(c *fiber.Ctx) error {
 			"Name":   name,
 			"Code":   currency.Code,
 			"Symbol": currency.Symbol,
+			"Flag":   currency.Flag,
 		})
 	}
 

@@ -4,7 +4,7 @@
 <head>
     <title>{{ Title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="/static/common.bundle.css">
+    <link rel="stylesheet" href="/static/common.bundle.css?{{ unixtime() }}">
     <script>
         if (localStorage.getItem('dark-mode-switch') === 'true' || (!('dark-mode-switch' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');

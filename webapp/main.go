@@ -46,7 +46,7 @@ func main() {
 	)
 
 	app.Use(minifier.New(minifier.Config{
-		MinifyHTML: true,
+		MinifyHTML: false,
 	}))
 
 	// Handlers

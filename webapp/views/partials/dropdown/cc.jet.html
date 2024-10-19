@@ -13,7 +13,7 @@
         errorMessage: '',
         value: '{{value}}',
         label: '{{label}}',
-        flag: '{{ asset("flags/" + strlower(value) + ".svg") }}',
+        flag: '{{ asset("country/" + strlower(value) + ".svg") }}',
 
         async loadItems() {
             try {
@@ -61,26 +61,27 @@
             this.dropdownOpen = false;
         }
     }" class="relative">
-    <button @click="toggleDropdown(); focusInput()" x-show="!dropdownOpen">
+    <div class="flex-grow"><input type="text" value="12" class="w-full bg-transparent outline-none"></div>
+<div class="w-32">
+    <button @click="toggleDropdown(); focusInput()" class=" h-16">
         <img :src="flag" width="24" height="24" :alt="value"
              class="h-7 w-7 mr-1.5" loading="lazy" />
-            <b x-text="value"></b><span  x-text="'&nbsp;-&nbsp;' + label">{{label}}</span>
-        {{yield ChevronUpDownHeroIcons(id=(id + "-icon"), class="absolute right-0 w-7 h-7 mr-2")}}
+            <span x-text="value"></span>
+        {{yield ChevronUpDownHeroIcons(id=(id + "-icon"), class="absolute right-0 w-6 h-6")}}
     </button>
-    <div class="w-full mx-auto" x-show="dropdownOpen" x-cloak>
-        {{yield inputField(id=(id + "-search"), type="search", placeholder="Enter currency name or code", class="w-full", required=true,
-            attrs=map(
-                "x-ref", (id),
-                "x-model", "searchQuery",
-                "@input", "filterItems"
-            )
-        )}}
-    </div>
-    <div x-show="dropdownOpen"
+    <div class="content" x-show="dropdownOpen"
          x-transition:enter="ease-out duration-200"
          x-transition:enter-start="-translate-y-2"
          x-transition:enter-end="translate-y-0"
-         class="absolute top-5 z-50 w-full mt-12" x-cloak>
+         x-cloak>
+         {{yield inputField(id=(id + "-search"), type="search", placeholder="Enter currency name or code", class="w-full", required=true,
+         attrs=map(
+             "x-ref", (id),
+             "x-model", "searchQuery",
+             "@input", "filterItems"
+         )
+     )}}
+     <hr />
         <div class="list" role="list">
             <template x-if="errorMessage">
                 <div class="px-3 py-1.5" x-text="errorMessage"></div>
@@ -90,7 +91,7 @@
             </template>
             <template x-for="item in filteredItems" :key="item.Code">
                 <div class="item" role="listitem" @click="selectItem(item);clearInput()">
-                    <img :src="'{{ asset("/flags/' + item.Code.toLowerCase() + '.svg") }}'" 
+                    <img :src="'{{ asset("/country/' + item.Flag.toLowerCase() + '.svg") }}'" 
                          :alt="item.Code" 
                          class="h-6 w-6 mr-1.5" 
                          width="24" height="24" loading="lazy" />
@@ -102,5 +103,6 @@
             </template>
         </div>
     </div>
+</div>
 </div>
 {{end}}

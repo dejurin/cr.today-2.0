@@ -2,9 +2,11 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/gofiber/template/jet/v2"
 )
@@ -31,6 +33,10 @@ func AddGlobalVariables(engine *jet.Engine) {
 
 	engine.AddFunc("trim", func(s string) string {
 		return strings.TrimSpace(s)
+	})
+
+	engine.AddFunc("unixtime", func() string {
+		return fmt.Sprintf("%d", time.Now().Unix())
 	})
 
 }
