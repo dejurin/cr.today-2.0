@@ -57,12 +57,12 @@
         selectItem(item) {
             this.value = item.Code;
             this.label = item.Name;
-            this.flag = '{{asset("flags")}}/' + item.Code.toLowerCase() + '.svg';
+            this.flag = '{{asset("country")}}/' + item.Flag.toLowerCase() + '.svg';
             this.dropdownOpen = false;
         }
     }" class="relative">
-    <div class="flex-grow"><input type="text" value="12" class="w-full bg-transparent outline-none"></div>
-<div class="w-32">
+
+
     <button @click="toggleDropdown(); focusInput()" class=" h-16">
         <img :src="flag" width="24" height="24" :alt="value"
              class="h-7 w-7 mr-1.5" loading="lazy" />
@@ -103,6 +103,5 @@
             </template>
         </div>
     </div>
-</div>
 </div>
 {{end}}
