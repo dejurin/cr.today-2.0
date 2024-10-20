@@ -22,14 +22,14 @@ func main() {
 		env = "dev"
 	}
 
-	engine := jet.New("views", ".jet.html")
-	engine.Reload(getEnvAsBool("TEMPLATE_RELOAD", false))
-	engine.Debug(getEnvAsBool("TEMPLATE_DEBUG", false))
+	viewEngine := jet.New("views", ".jet.html")
+	viewEngine.Reload(getEnvAsBool("TEMPLATE_RELOAD", false))
+	viewEngine.Debug(getEnvAsBool("TEMPLATE_DEBUG", false))
 
-	AddGlobalVariables(engine)
+	AddGlobalVariables(viewEngine)
 
 	app := fiber.New(fiber.Config{
-		Views:             engine,
+		Views:             viewEngine,
 		PassLocalsToViews: true,
 		ServerHeader:      "CR.Today",
 		ViewsLayout:       "layouts/main",
