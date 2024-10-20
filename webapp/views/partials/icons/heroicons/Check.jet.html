@@ -1,5 +1,5 @@
-{{block CheckHeroIcons(id="", class="", strokeWidth="1.5")}}
-<svg {{if class}} id="{{id}}" {{end}} {{if class}} class="{{class}}" {{end}}
+{{block CheckHeroIcons(id="", classes="", strokeWidth="1.5")}}
+<svg id="{{id}}" {{if classes}} class="{{classes}}" {{end}}
   data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor"
   viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <path stroke-linecap="round" stroke-linejoin="round"

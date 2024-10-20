@@ -7,41 +7,46 @@
 
 {{import "../icons/heroicons/ChevronUpDown"}}
 
-
 <div
   class="relative px-4 sm:px-8 py-8 items-center justify-between w-full h-auto rounded-xl bg-white dark:bg-slate-900/80 bg-opacity-90">
 
-  <div class="flex">
-    <div class=" flex-1 w-64">
-      {{ yield dropdownCC(id="base",  flag="eu", label="Euro", value="EUR", class="w-full")
+  <div class="flex gap-4">
+    <div class="flex-1 w-64">
+      {{ yield dropdownCC(id="base", flag="eu", label="Euro", value="EUR",
+      class="w-full")
       }}
     </div>
 
-    <div class="w-12 flex-none flex items-center justify-center ">
-      <button class="w-full flex items-center justify-center ">
-        {{ yield ArrowsRightLeftHeroIcons(class="h-7 w-7 ") }}
+    <div class="w-12 flex-none flex items-center justify-center">
+      <button
+        class="btn-circle">
+        {{ yield ArrowsRightLeftHeroIcons(classes="h-7 w-7") }}
       </button>
     </div>
 
-    <div class=" flex-1 w-64">
+    <div class="flex-1 w-64">
       {{ yield dropdownCC(id="quote", flag="us", label="US Dollar", value="USD",
       class="w-full") }}
 
     </div>
   </div>
 
-  <div class="flex mt-4 gap-4">
-    <div class="flex-1">
-      {{ yield inputLabelField(id="ewfedwfewf", type="text", label="US Dollar",
-      label="Amount", value="1") }}
+  <div class="flex flex-row mt-4 gap-4">
+    <div class="basis-1/2">
+      {{ yield inputLabelField(id="ewfedwfewf", classes="w-full", type="text", label="Amount", value="1") }}
     </div>
-    <div class="flex-1">
-      {{ yield inputLabelField(id="ewfewfewf", type="number", label="US Dollar",
-      label="Commission %", value="0") }}
+    <div class="basis-1/4">
+      {{ yield inputLabelField(id="ewfewfewf", placeholder="0%", type="number", label="Commission %", classes="w-full", value="0") }}
     </div>
-    <div class="flex-1">
-    {{ yield buttonOutline(label="Convert", class="w-full btn-blue") }}
-  </div>
+    <div class="basis-1/2">
+      {{ yield buttonOutline(label="Convert", classes="w-full btn-blue")  content}}
+      Convert
+      <svg class="w-5 h-5 mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path clip-rule="evenodd" fill-rule="evenodd" d="M4.606 12.97a.75.75 0 0 1-.134 1.051 2.494 2.494 0 0 0-.93 2.437 2.494 2.494 0 0 0 2.437-.93.75.75 0 1 1 1.186.918 3.995 3.995 0 0 1-4.482 1.332.75.75 0 0 1-.461-.461 3.994 3.994 0 0 1 1.332-4.482.75.75 0 0 1 1.052.134Z"></path>
+        <path clip-rule="evenodd" fill-rule="evenodd" d="M5.752 12A13.07 13.07 0 0 0 8 14.248v4.002c0 .414.336.75.75.75a5 5 0 0 0 4.797-6.414 12.984 12.984 0 0 0 5.45-10.848.75.75 0 0 0-.735-.735 12.984 12.984 0 0 0-10.849 5.45A5 5 0 0 0 1 11.25c.001.414.337.75.751.75h4.002ZM13 9a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path>
+      </svg>
+      {{end}}
+    </div>
   </div>
 
   <div class="py-4 font-semibold text-3xl md:text-4xl text-center">€1 =
@@ -49,13 +54,10 @@
   <div class="text-base pb-4 font-semibold text-center">1 Euro = 1.08715
     Dollars</div>
 
+  <div class="flex justify-between">
+    <div class="text-xs text-slate-400">1 Euro + 0% commission</div>
+    <div class="text-xs text-slate-400">Updated 21 minutes ago</div>
 
-
- <div class="flex justify-between">
-  <div class="text-xs  text-slate-400">1 Euro + 0% commission</div>
-  <div class="text-xs text-slate-400">Updated 21 minutes ago</div>
-
- </div>
+  </div>
 
 </div>
-

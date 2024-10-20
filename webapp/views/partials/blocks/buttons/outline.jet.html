@@ -1,8 +1,5 @@
-{{block buttonOutline(label="",class="", attrs=map())}}
-<button type="button"
-
-class="btn{{if class}} {{class}}{{end}}"
-{{range key, value := attrs}}{{key}}="{{value}}"{{end}}>
-    {{label}}
+{{block buttonOutline(classes="", attrs=map())}}
+<button type="button" class="btn{{if classes}} {{classes}}{{end}}" {{range key, value := attrs}}{{key}}="{{value}}"{{end}}>
+    {{yield content}}
 </button>
 {{end}}
