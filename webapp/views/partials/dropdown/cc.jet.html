@@ -2,7 +2,7 @@
 {{import "../icons/heroicons/ChevronUpDown"}}
 {{import "../icons/heroicons/Check"}}
 
-{{block dropdownCC(id="", label="", value="", class="")}}
+{{block dropdownCC(id="", flag="", label="", value="", class="")}}
 <div id="{{id}}" class="dropdown{{if class}} {{class}}{{end}}"  @click.away="dropdownOpen = false; clearInput()"
      x-data="{
         dropdownOpen: false,
@@ -13,7 +13,7 @@
         errorMessage: '',
         value: '{{value}}',
         label: '{{label}}',
-        flag: '{{ asset("country/" + strlower(value) + ".svg") }}',
+        flag: '{{ asset("country/" + strlower(flag) + ".svg") }}',
 
         async loadItems() {
             try {
@@ -63,26 +63,42 @@
     }" class="relative">
 
 
-    <button @click="toggleDropdown(); focusInput()" class=" h-16">
-        <img :src="flag" width="24" height="24" :alt="value"
-             class="h-7 w-7 mr-1.5" loading="lazy" />
-            <span x-text="value"></span>
-        {{yield ChevronUpDownHeroIcons(id=(id + "-icon"), class="absolute right-0 w-6 h-6")}}
+    <button x-show="!dropdownOpen" @click="toggleDropdown(); focusInput()" class="flex justify-between items-center h-16">
+
+           <div class="flex gap-2 items-center">
+            <img :src="flag" width="24" height="24" :alt="value"
+            class="h-7 w-7" loading="lazy" />
+           <span x-text="value"></span>
+           </div>
+        {{yield ChevronUpDownHeroIcons(id=(id + "-icon"), class=" w-6 h-6")}}
+   
     </button>
+    {{yield inputField(id=(id + "-search"), type="search", placeholder="Enter currency name or code", class="w-full", required=true,
+    attrs=map(
+        "x-show", "dropdownOpen",
+        "x-ref", (id),
+        "x-model", "searchQuery",
+        "@input", "filterItems"
+    )
+)}}
     <div class="content" x-show="dropdownOpen"
+    x-data="{ showTop: false, showBottom: true }"
+
          x-transition:enter="ease-out duration-200"
          x-transition:enter-start="-translate-y-2"
          x-transition:enter-end="translate-y-0"
          x-cloak>
-         {{yield inputField(id=(id + "-search"), type="search", placeholder="Enter currency name or code", class="w-full", required=true,
-         attrs=map(
-             "x-ref", (id),
-             "x-model", "searchQuery",
-             "@input", "filterItems"
-         )
-     )}}
-     <hr />
-        <div class="list" role="list">
+         <div 
+         class="absolute inset-x-0 top-0 h-8 bg-gradient-to-b z-50 dark:from-slate-800 from-white to-transparent pointer-events-none"
+         x-show="showTop"
+       ></div>
+        <div class="list" @scroll="
+        const el = $el;
+        showTop = el.scrollTop > 0;
+        showBottom = el.scrollTop + el.clientHeight < el.scrollHeight;
+      " role="list">
+
+
             <template x-if="errorMessage">
                 <div class="px-3 py-1.5" x-text="errorMessage"></div>
             </template>
@@ -91,17 +107,25 @@
             </template>
             <template x-for="item in filteredItems" :key="item.Code">
                 <div class="item" role="listitem" @click="selectItem(item);clearInput()">
-                    <img :src="'{{ asset("/country/' + item.Flag.toLowerCase() + '.svg") }}'" 
+                    <div class="flex truncate items-center">
+                        <img :src="'{{ asset("/country/' + item.Flag.toLowerCase() + '.svg") }}'" 
                          :alt="item.Code" 
                          class="h-6 w-6 mr-1.5" 
                          width="24" height="24" loading="lazy" />
-                    <b x-text="item.Code"></b><span  x-text="'&nbsp;-&nbsp;' + item.Name"></span>
+                    <b x-text="item.Code"></b><span x-text="'&nbsp;-&nbsp;' + item.Name"></span>
+                    </div>
                     <template x-if="value === item.Code">
-                        {{yield CheckHeroIcons(id=(id + "-check"), class="absolute right-0 w-5 h-5 mr-2 stroke-green-600")}}
+                        {{yield CheckHeroIcons(id=(id + "-check"), class="ml-auto w-5 h-5 stroke-green-600")}}
                     </template>
                 </div>
+                
             </template>
+
         </div>
+        <div 
+  class="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t dark:from-slate-800 from-white to-transparent pointer-events-none"
+  x-show="showBottom"
+></div>
     </div>
 </div>
 {{end}}

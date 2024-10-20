@@ -4,7 +4,7 @@
     type="{{type}}" 
     value="{{value}}" 
     placeholder="{{placeholder}}" 
-    class="input-text{{if class}} {{class}}{{end}}"
+    class="{{if class}} {{class}}{{end}}"
     {{if required}}required{{end}}
     {{range key, value := attrs}}{{key}}="{{value}}"{{end}}
 />

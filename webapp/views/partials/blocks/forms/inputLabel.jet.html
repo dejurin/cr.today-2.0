@@ -1,0 +1,17 @@
+{{block inputLabelField(type="text", id="", label="", placeholder="", value="",
+class="", required=false, attrs=map())}}
+<div
+    class="rounded-lg px-3 w-full h-16 py-2  ring-inset bg-white hover:ring-2 ring-slate-200 dark:ring-slate-700 duration-300 transition-all border ">
+    <label for="{{id}}"
+        class="block text-xs font-light text-gray-400 whitespace-nowrap">{{label}}</label>
+    <input
+        id="{{id}}"
+        type="{{type}}"
+        value="{{value}}"
+        placeholder="{{placeholder}}"
+        class="block w-full text-xl border-0 p-0 text-gray-900 placeholder:text-gray-400 bg-transparent focus:ring-0 outline-none {{if class}} {{class}}{{end}}"
+        {{if required}}required{{end}}
+        {{range key, value :=attrs}}{{key}}="{{value}}"{{end}}>
+</div>
+
+{{end}}
