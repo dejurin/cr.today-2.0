@@ -59,7 +59,7 @@ h6 {
 
 
 .dropdown {
-  @apply relative w-full h-16 flex items-center ring-inset hover:ring-2 ring-slate-200 dark:ring-slate-700 duration-300 font-light transition-all bg-white dark:bg-slate-900 dark:border-slate-700 border rounded-lg text-slate-700 dark:text-slate-200;
+  @apply  w-full h-16 flex items-center ring-inset hover:ring-2 ring-slate-200 dark:ring-slate-700 duration-300 font-light transition-all bg-white dark:bg-slate-900 dark:border-slate-700 border rounded-lg text-slate-700 dark:text-slate-200;
 
   button {
     @apply text-2xl px-3 py-2 disabled:opacity-50 disabled:pointer-events-none w-full;
@@ -70,12 +70,12 @@ h6 {
   }
 
   .content {
-    @apply absolute overflow-hidden z-50 top-16 mt-1 w-full rounded-md h-56 bg-white border shadow-xl border-slate-300 text-slate-700 dark:text-slate-200 dark:bg-slate-800 dark:border-slate-700;
+    @apply absolute m-0 z-40 top-16 overflow-auto rounded-lg left-0 mt-2 w-full h-48 bg-white  shadow-xl border text-slate-700 dark:text-slate-200 dark:bg-slate-800 dark:border-slate-700;
 
   }
 
   .list {
-    @apply sm:h-56 overflow-scroll h-full;
+    @apply h-full overflow-scroll ;
   }
 
   .item {

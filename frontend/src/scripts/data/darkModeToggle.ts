@@ -10,8 +10,6 @@ const darkModeToggle = () => ({
     init() {
         const storedPreference = localStorage.getItem("dark-mode-switch");
 
-        console.log(storedPreference);
-
         if (storedPreference !== null) {
             this.darkModeSwitch = storedPreference === "true";
         }

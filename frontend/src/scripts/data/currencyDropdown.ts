@@ -11,7 +11,6 @@ const currencyDropdown = (value: string, label: string, flag: string, endpoint: 
         flag: `${staticPath}${flag.toLowerCase()}.svg`,
 
         async loadItems(): Promise<void> {
-            console.log(endpoint);
             try {
                 const response = await fetch(endpoint);
                 if (!response.ok) throw new Error('Failed to load data.');

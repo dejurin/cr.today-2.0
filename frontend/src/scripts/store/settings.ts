@@ -5,7 +5,6 @@ const settingsStore = {
   timeZone: localStorage.getItem("timeZone") || "UTC",
   decimals: parseInt(localStorage.getItem("decimals") || "2", 10),
 
-
   setAmount(value: string) {
     this.amount = value;
     localStorage.setItem("amount", value);
